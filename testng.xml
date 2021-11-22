@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" verbose="2" parallel="classes" thread-count="16" data-provider-thread-count="16">
+    <test name="User Auth Token Test">
+        <classes>
+            <class name="herokuapp.test.HerokuappAPI"/>
+        </classes>
+    </test>
+
+</suite> 
