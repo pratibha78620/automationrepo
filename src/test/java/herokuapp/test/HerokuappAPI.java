@@ -102,13 +102,13 @@ public class HerokuappAPI {
         JsonArray listOfLeaderBoardUsers = HerokuappMethods.getLeaderBoardUserList(auth0Token);
 
         boolean found = false;
-        String userid = null;
+        String userId = null;
 
         for(int i=0; i < listOfLeaderBoardUsers.size(); i++) {
             if(listOfLeaderBoardUsers.get(i).getAsJsonObject().get("username").getAsString().equalsIgnoreCase(playerName)){
                 found = true;
                 //get the userid for updating the player
-                userid = listOfLeaderBoardUsers.get(i).getAsJsonObject().get("user_id").getAsString();
+                userId = listOfLeaderBoardUsers.get(i).getAsJsonObject().get("user_id").getAsString();
                 break;
             }
         }
@@ -117,7 +117,7 @@ public class HerokuappAPI {
 
         //Update the user score via userId and verify the response is 204
         actualTestContent = actualTestContent.replace("0", "4000");
-        fetcher = HerokuappMethods.leaderBoardUserUpdate(actualTestContent, userid, auth0Token);
+        fetcher = HerokuappMethods.leaderBoardUserUpdate(actualTestContent, userId, auth0Token);
         assertThat("Error - Unable to update the user: ", fetcher.getStatusCode(), is(HttpStatus.SC_NO_CONTENT));
 
         //delete the user
